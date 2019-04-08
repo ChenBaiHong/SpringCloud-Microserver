@@ -1,0 +1,23 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-gateway-zuul
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上；http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+zuul:
+  # 自定义zuul 忽略应用服务，将不被代理
+  ignored-services:
+  - microservice-consumer-movie-feign-with-hystrix
+  #- microservice-provider-user
+  # 指定的微服务指定路径，例如： microservice-provider-user 的路由代理路径
+  routes:
+    microservice-provider-user: /user/** # http://localhost:8040/user/msprovider/userContro/findUser/1

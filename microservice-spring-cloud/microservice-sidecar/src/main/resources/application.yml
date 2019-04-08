@@ -1,0 +1,24 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: microservice-sidecar
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上；http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    #eureka的健康检查  
+    healthcheck:
+      enabled: true
+#####################################################################################################
+# 异构微服务的配置， port 代表异构微服务的端口；health-uri 代表异构微服务的操作链接地址
+sidecar:
+  port: 8060
+  health-uri: http://localhost:${sidecar.port}/health
+#####################################################################################################

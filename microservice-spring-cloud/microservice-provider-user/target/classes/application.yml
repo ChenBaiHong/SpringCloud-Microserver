@@ -1,0 +1,52 @@
+server:
+  port: 7901 #配置服务器端口
+  servlet:
+    context-path: /msprovider
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    # seSSL=false,避免安全检查
+    url: jdbc:mysql://localhost/microservice?characterEncoding=utf-8&useSSL=false
+  jpa:
+    # 控制台是否打印原生SQL语句
+    show-sql: true
+    # 配置JPA 数据库方言
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate:
+      ddl-auto: update # 自动建表
+  application:
+    name: microservice-provider-user
+    #microservice-gateway-zuul-reg-exp代理访问 url: http://localhost:8040/v1/microservice-provider-user/msprovider/userContro/findUser/1
+    #name: microservice-provider-user-v1
+# 通过在类路径上拥有SpringCloudStart-Netflix-eureka客户机，您的应用程序将自动向Eureka服务器注册。要找到Eureka服务器，需要进行配置
+eureka:
+  client:
+    service-url:
+      # eureka默认铺设到指定 URL 上,eureka单机模式下含权限
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+#      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/                     
+    #eureka的健康检查  
+    healthcheck:
+      enabled: true
+  instance:
+    #默認是 false，url主机名访问；true，spring配置的应用访问
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+#    metadata-map:
+#      zone: ABC   # eureka 可以理解的元数据
+#      baihoo: BBC # 不会影响客户端行为
+#日志
+logging:
+  pattern:
+    # 日志在控制台打印的方式 ，下例：%d 代表日志输出的日期 ，%msg 代表日志输出的详细信息，%n代表换行
+    console: "%d - %msg%n"
+    # 单独指定某个类的日志输出级别
+    level:
+      com.baihoomuch.cloud: info
+  path: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud
+  file: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud/microserviceProvider.log
+  
+  

@@ -1,0 +1,46 @@
+package com.baihoomuch.cloud.enums;
+
+import lombok.Getter;
+
+/**
+ * Description: sell
+ * auther Administrator on 2018/6/27
+ *
+ * 以枚举的形式，表示商品的状态。
+ *          商品状态,0正常1下架
+ *
+ */
+//@Getter //lombok.*; 包含了一系列 getter，setter，toString 方法
+public enum ProductStatusEnum {
+
+    UP(0,"在架"),
+    DOWN(1,"下架");
+
+    private Integer code;
+
+    private String message;
+
+    ProductStatusEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+    
+    
+    
+}

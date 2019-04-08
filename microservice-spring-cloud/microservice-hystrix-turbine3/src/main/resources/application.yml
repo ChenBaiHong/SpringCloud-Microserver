@@ -1,0 +1,44 @@
+server:
+  port: 8903
+# 注册到eureka的应用名称  
+spring:
+  application:
+    name: microservice-hystrix-turbine3
+# 设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。
+# 默认是http://localhost:8761/eureka ; 多个地址可使用 , 分隔
+eureka:
+  client:
+    service-url:
+      default-zone: http://admin:admin@localhost:8761/eureka/
+  # 默認是 false，是否啓動IP訪問
+  instance:
+    prefer-ip-address: true
+#springboot2.0. 的配置项为: 
+#actuator端口
+management:
+#  server:
+#    port: 8010
+  endpoints:
+    web:
+#      base-path: /monitor #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+      exposure:
+        include: '*'  # 开放所有页面节点  默认只开启了health、info两个节点
+  endpoint:
+    health:
+      show-details: always
+turbine:
+  aggregator:
+    # 指定集群配置的应用名
+    cluster-config:
+    - MICROSERVICE-CONSUMER-MOVIE-FEIGN-WITH-HYSTRIX-HYSTRIX-FACTORY
+    - MICROSERVICE-CONSUMER-MOVIE-RIBBON-WITH-HYSTRIX3
+  # 指定监控的应用名
+  app-config: microservice-consumer-movie-feign-with-hystrix-hystrix-factory,microservice-consumer-movie-ribbon-with-hystrix3
+  # 特例应用 部分服务应用配置了 context-path，部分没有配置 context-path
+  instanceUrlSuffix:
+    MICROSERVICE-CONSUMER-MOVIE-RIBBON-WITH-HYSTRIX3: msmovie/actuator/hystrix.stream
+# 打印turbine日志
+logging:
+  level:
+    root: INFO
+    com.netflix.turbine.monitor: DEBUG

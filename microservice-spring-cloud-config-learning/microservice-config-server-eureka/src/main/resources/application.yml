@@ -1,0 +1,26 @@
+server:
+  port: 8080
+# 配置Spring Cloud Config Server 的存储库
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/baiHoo/microservice-config-repo   # 公用仓库
+          # git 登陆用户和密码
+          username: 
+          password: 
+# springBoot 2.0.3.RELEASE 提供的 security安全机制
+  security:
+    user:
+      name: admin
+      password: admin
+# 工程的应用名称
+  application: 
+    name: microservice-config-server-eureka
+# 将Spring Config Server 注册到Eureka服务端
+eureka:
+  client:
+    service-url:
+      # eureka默认铺设到指定 URL 上,eureka单机模式下含权限
+      defaultZone: http://admin:admin@localhost:8761/eureka/

@@ -1,0 +1,29 @@
+server:
+  #Eureka 默认服务端口#Eureka 默认服务端口
+  port: 8761
+# eureka.client.registerWithEureka ：表示是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
+# eureka.client.fetchRegistry ：表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
+# eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上
+      defaultZone: http://localhost:8761/eureka
+    # 单机模拟情况下，告诉eureka,不要当成eureka-client客户端，而是eureka-server
+    register-with-eureka: false
+    # 单机模拟情况下，告诉eureka，不要当成当前不是eureka-client客户端，而是eureka-server
+    fetch-registry: false
+logging:
+  pattern:
+    level:
+      com.baihoo: info
+    console: '%d - %msg%n'
+  path: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud
+  file: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud/microservice-discovery-eureka.log
+# springBoot 2.0.1.RELEASE 提供的 security安全机制
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+

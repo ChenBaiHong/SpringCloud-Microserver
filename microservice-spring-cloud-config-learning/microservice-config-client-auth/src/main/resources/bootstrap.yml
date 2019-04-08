@@ -1,0 +1,14 @@
+# 配置spring cloud config 客户端
+spring:
+  cloud:
+    config:
+      uri:
+      #- http://admin:admin@localhost:8080  # curl 风格
+      - http://localhost:8080
+      # 属性值风格，配置用户名密码，优先级高
+      username: admin 
+      password: admin
+      profile: dev
+      label: master # 当config server 的后端存储是git时，默认时master
+  application:
+    name: foobar # 后端存储的文件名称

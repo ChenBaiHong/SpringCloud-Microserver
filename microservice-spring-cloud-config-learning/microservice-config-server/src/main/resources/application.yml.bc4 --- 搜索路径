@@ -1,0 +1,13 @@
+server:
+  port: 8080
+# 配置Spring Cloud Config Server 的存储库
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/baiHoo/microservice-config-repo   # 公用仓库
+          # searchPaths: '{application}' # searchPaths 也可以用通配符
+          search-paths:
+          - foo # 目录路径
+          - bar # 目录路径

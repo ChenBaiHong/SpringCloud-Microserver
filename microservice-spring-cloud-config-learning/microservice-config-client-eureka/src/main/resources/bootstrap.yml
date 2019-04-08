@@ -1,0 +1,19 @@
+spring:
+  cloud:
+# 配置spring cloud config 客户端
+    config:
+      discovery:
+        enabled: true # 通过eureka服务发现，找到spring cloud config 服务端
+        service-id: microservice-config-server-eureka
+      # 链接 spring cloud config 服务端用户认证
+      username: admin 
+      password: admin
+# 工程的应用名称
+  application:
+    name: foobar # 后端存储的文件名称
+# 将Spring Config Client 注册到Eureka服务端
+eureka:
+  client:
+    service-url:
+      # eureka默认铺设到指定 URL 上,eureka单机模式下含权限
+      defaultZone: http://admin:admin@localhost:8761/eureka/

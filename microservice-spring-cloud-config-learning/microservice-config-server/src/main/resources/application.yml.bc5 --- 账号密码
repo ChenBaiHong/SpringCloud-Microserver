@@ -1,0 +1,12 @@
+server:
+  port: 8080
+# 配置Spring Cloud Config Server 的存储库
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/baiHoo/microservice-config-repo   # 公用仓库
+          username: baigle
+          password: baigle
+              

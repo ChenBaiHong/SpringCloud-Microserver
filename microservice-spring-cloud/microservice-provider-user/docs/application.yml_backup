@@ -1,0 +1,41 @@
+server:
+  port: 7900 #配置服务器端口
+  servlet:
+    context-path: /msprovider
+spring:
+  jpa:
+    #不要生成DDL语句，因为我们已经写好了
+    generate-ddl: false
+    hibernate:
+      #hibernate不要生成DDL语句
+      ddl-auto: none
+  datasource:
+    #配置数据源平台， h2模拟数据库
+    platform: h2
+    #表语句
+    schema: classpath:schema.sql
+    #表数据
+    data: classpath:data.sql
+  application:
+    name: microservice-provider-user
+# 通过在类路径上拥有SpringCloudStart-Netflix-eureka客户机，您的应用程序将自动向Eureka服务器注册。要找到Eureka服务器，需要进行配置
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+#日志
+logging:
+  pattern:
+    # 日志在控制台打印的方式 ，下例：%d 代表日志输出的日期 ，%msg 代表日志输出的详细信息，%n代表换行
+    console: "%d - %msg%n"
+    # 单独指定某个类的日志输出级别
+    level:
+      com.baihoomuch.cloud: info
+  path: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud
+  file: G:/IntelliJ_IDEALog/IDEA_Microservice/microservices-pring-cloud/microserviceProvider.log

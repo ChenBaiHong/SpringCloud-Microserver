@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.baihoo.cloud</groupId>
+	<artifactId>microservice-consumer-uploadfile-feign-with-hystrix</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>microservice-consumer-uploadfile-feign-with-hystrix</name>
+	<description>Spring Boot 上载文件消费端服务，Fegion的Hystrix断路器支持</description>
+
+	<parent>
+		<artifactId>microservice-spring-cloud</artifactId>
+		<groupId>com.baihoo</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<!--springBoot web jar 文件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--springBoot 测试jar 文件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--引入lombok包，主要是实用的功能创建javabean实体时，可以通过注解表示实体字段是否可有getter和setter方法或toString方法 -->
+		<dependency>
+			<!--idea 还的引入lombok插件 -->
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<!--springCloud eureka发现组件客户端 jar 文件 Eureka Client是一个Java客户端，用于简化与Eureka 
+			Server的交互， 客户端同时也具备一个内置的、使用轮询（round-robin）负载算法的负载均衡器。 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- 要启用Hystrix度量标准流，请在spring-boot-starter-actuator上包含依赖项， 并设置management.endpoints.web.exposure.include：hystrix.stream。 
+			这样做会将/actuator/hystrix.stream公开为管理端点 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- Feign是一个声明性的Web服务客户端。它使编写Web服务客户端变得更容易。feign已经集成了Ribbon客户端负载功能， 所以使用feign时可无需考虑客户端的负载。 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<!-- 要将hystrix包含在您的项目中，可以使用具有org.sprframework.Cloud的组id和SpringCloud-Start-Netflix-hystrix的工件ID -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>
+        		spring-cloud-starter-netflix-hystrix
+        	</artifactId>
+		</dependency>
+		<!-- 添加 Spring Data Mongodb 的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<!-- 添加 Thymeleaf 的依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- HTTP远程调用对开发者完全透明，得到与调用本地方法一致的编码 在项目中声明Apache HTTP Client和feign-httpclient依赖 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.feign</groupId>
+			<artifactId>feign-httpclient</artifactId>
+			<version>8.18.0</version>
+		</dependency>
+		<!-- springcloud使用feign实现服务间条用，参数数据太大 -->
+		<dependency>
+			<groupId>io.github.openfeign.form</groupId>
+			<artifactId>feign-form</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign.form</groupId>
+			<artifactId>feign-form-spring</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<!-- 上载文件 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		<!-- // springcloud使用feign实现服务间条用，参数数据太大 -->
+		<!-- 谷歌提供JSON 转化类 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<!-- commons-io 工具包 -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+	</dependencies>
+</project>

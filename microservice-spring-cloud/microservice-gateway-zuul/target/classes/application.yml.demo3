@@ -1,0 +1,22 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-gateway-zuul
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上；http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+# 后端的位置可以指定为serviceId（用于发现服务）或url（用于物理位置）
+# 注意：这些简单的url-routes不会作为HystrixCommand执行，也不会使用Ribbon对多个URL进行负载均衡。
+zuul:
+  routes:
+    baihoo:
+      path: /user-url/**
+      url: http://192.168.1.7:7915/

@@ -1,0 +1,10 @@
+# 配置spring cloud config 客户端
+spring:
+  cloud:
+    config:
+      uri:
+      - http://localhost:8080
+      profile: dev
+      label: master # 当config server 的后端存储是git时，默认时master
+  application:
+    name: foobar # 后端存储的文件名称

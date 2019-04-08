@@ -1,0 +1,48 @@
+server:
+  port: 8050
+#  address: localhost
+  servlet:
+    context-path: / #mspupload
+spring:
+  application:
+    name: microservice-provider-uploadfile
+  # 配置thymeleaf
+  thymeleaf:
+    encoding:  UTF-8
+    cache: false
+    mode: HTML5
+  # 分割文件上载大小
+  servlet:
+    multipart:
+      enabled: true  # 启用http上传处理
+      max-file-size: 100MB # 设置单个文件的最大长度
+      max-request-size: 100MB # 设置最大的请求文件的大小
+      # file-size-threshold: 1MB # 当上传文件达到1MB的时候进行磁盘写入
+      # location: / # 上传的临时目录
+# 自定义独立配置 MongoDB 服务
+#  data:
+#    mongodb:
+#      uri: http://localhost:27017
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上；http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    #eureka的健康检查  
+    healthcheck:
+      enabled: true
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）
+    lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+
+##################################################################
+#                                   项目自定义配置内容
+##################################################################
+myserver.address: 192.168.1.7
+upload.file.address: "F:/ResourceVideoFiles/uploadFile"
+
+    

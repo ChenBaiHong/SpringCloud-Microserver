@@ -1,0 +1,109 @@
+《--=================================================================================================--》
+	eureka官方说明：
+		http://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-netflix.html
+		
+《--=================================================================================================--》
+	项目学习顺序：
+	microservice-spring-cloud ------ 01
+	
+		microservice-provider-user ------ 02  提供者 
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-provider-goods ------ 02 提供者
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie ------ 03  消费者
+																	注册eureka客户端服务
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-discovery-eureka ----- 04 eureka 
+																	服务集群，发现服务
+		
+		microservice-consumer-movie-ribbon ------ 05
+																	注册eureka客户端服务
+																	配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-ribbon-customizing-properties ------ 06
+																	注册eureka客户端服务
+																	自定义配置文件实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-ribbon-without-eureka ------ 07
+																	注册eureka客户端服务
+																	不关联eureka集群化的多个provider的节点(端口：任意个)，指定ribbon负载 访问的provider（端口:7905）节点
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-feign ------ 08
+																	注册eureka客户端服务
+																	feign已经集成了ribbon负载均衡
+																	feign实现微服务远程调用（相当于webservice的调用）
+																	
+		microservice-consumer-movie-feign-customizing ------ 09
+																	注册eureka客户端服务
+																	feign 已经集成了ribbon负载均衡
+																	feign 实现微服务远程调用（相当于webservice的调用）
+																	feign 覆写Fegion的默认配置及Fegion的日志，使用feign自己的http注解协议
+																	
+		microservice-discovery-eureka-ha ----- 10 eureka 高可用集群发现及相互注册
+																	服务集群，发现服务
+																	
+		microservice-consumer-movie-ribbon-with-hystrix ------ 11
+																	注册eureka客户端服务
+																	配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	加入hystrix断路器模式应用
+
+		microservice-consumer-movie-ribbon-with-hystrix-propagating ------ 12
+																	注册eureka客户端服务
+																	配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+																	SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+																	加入hystrix断路器模式应用,传播安全上下文或使用Spring作用域				
+																	
+		microservice-consumer-movie-feign-with-hystrix ------ 13			
+																	注册eureka客户端服务
+																	feign已经集成了ribbon负载均衡
+																	feign实现微服务远程调用（相当于webservice的调用）	
+																	整合feign加入hystrix断路器模式
+																	
+		microservice-consumer-movie-feign-customizing-without-hystrix ------ 14
+																	注册eureka客户端服务
+																	feign 已经集成了ribbon负载均衡
+																	feign 实现微服务远程调用（相当于webservice的调用）
+																	feign 覆写Fegion的默认配置及Fegion的日志，使用feign自己的http注解协议		
+																	整合feign加入hystrix断路器模式
+																	
+		microservice-consumer-movie-feign-with-hystrix-hystrix-factory ------ 15
+																	注册eureka客户端服务
+																	feign 已经集成了ribbon负载均衡
+																	feign 实现微服务远程调用（相当于webservice的调用）
+																	feign 覆写Fegion的默认配置及Fegion的日志，使用feign自己的http注解协议		
+																	整合feign加入hystrix断路器模式（工厂模式构造断路器备用值，Feign使用fallbackFactory属性打印fallback异常）
+																	
+		microservice-hystrix-dashboard ------ 16
+																	聚合Hystrix的各个断路器，仪表板图形化详情展示。Hystrix Dashboard时监控Hystrix的熔断器的一个组件，提供了数据监控和友好的展示界面
+		
+		microservice-hystrix-turbine ------ 17
+																	使用Turbine聚合监控在使用Hystrix Dashboard组件监控服务的熔断器状况时，每个服务都有一个Hystrix Dashboard主页，服务数量过多时，监控非常不方便。Netflix开源了另一个组件Turbine，用于聚合多个Hystrix Dashboard，将数据显示在一个页面上，集中监控。
+		
+		microservice-consumer-movie-ribbon-with-hystrix2 ------ 18
+														注册eureka客户端服务
+														配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+														SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+														加入hystrix断路器模式应用	
+														
+		microservice-hystrix-turbine2 ------ 19
+																	使用Turbine聚合监控在使用Hystrix Dashboard组件监控服务的熔断器状况时，每个服务都有一个Hystrix Dashboard主页，服务数量过多时，监控非常不方便。Netflix开源了另一个组件Turbine，用于聚合多个Hystrix Dashboard，将数据显示在一个页面上，集中监控。
+																	
+		microservice-consumer-movie-ribbon-with-hystrix3 ------ 20
+														注册eureka客户端服务
+														配置对象初始化的方式，实现如何ribbon 以某个算法类来负载均衡（比如随机负载，轮询负载）
+														SpringBoot内部对象RestTemplate对象实现微服务调用（相当于webservice的调用）
+														加入hystrix断路器模式应用	
+														
+		microservice-hystrix-turbine3 ------ 21
+																	使用Turbine聚合监控在使用Hystrix Dashboard组件监控服务的熔断器状况时，每个服务都有一个Hystrix Dashboard主页，服务数量过多时，监控非常不方便。Netflix开源了另一个组件Turbine，用于聚合多个Hystrix Dashboard，将数据显示在一个页面上，集中监控。
+																																	
+															

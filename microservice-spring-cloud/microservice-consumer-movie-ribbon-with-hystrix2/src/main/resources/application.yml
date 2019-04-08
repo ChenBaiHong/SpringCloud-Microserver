@@ -1,0 +1,34 @@
+server:
+  servlet:
+    context-path: /msmovie
+  port: 7920
+logging:
+  pattern:
+    console: '%d - %msg%n'
+    level:
+      com.baihoomuch.cloud: info
+# eureka.client.registerWithEureka ：表示是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
+# eureka.client.fetchRegistry ：表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
+# eureka.client.serviceUrl.defaultZone ：设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+spring:
+  application:
+    name: microservice-consumer-movie-ribbon-with-hystrix2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    home-page-url-path: /msmovie # microservice-hystrix-turbine2 —— hystrix 对应当前servlet上下文path的监听路径
+    health-check-url-path: /msmovie/actuator/health
+    status-page-url-path: /msmovie/actuator/info
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+#springboot2.0. 的配置项为: 
+management:
+  endpoints:
+    web:
+      base-path: /actuator # 修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+      exposure:
+        include: '*'  # 开放所有页面节点  默认只开启了health、info两个节点

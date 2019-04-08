@@ -1,0 +1,20 @@
+server:
+  port: 8042
+spring:
+  application:
+    name: microservice-gateway-zuul-filter
+eureka:
+  client:
+    service-url:
+      #eureka默认铺设到指定 URL 上；http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+  instance:
+    #默認是 false，是否啓動IP訪問
+    prefer-ip-address: true
+    # 改配置相當與 IP地址:我的應用名稱:端口
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+# 配置线程执行超时时间，比如上传文件为线程阻塞，涉及上传时间过久的问题，通过Zuul上传文件
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+    ConnectTimeout: 3000
+    ReadTimeout: 60000
