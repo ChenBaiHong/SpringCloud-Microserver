@@ -33,7 +33,7 @@
 	+ 如果要禁用一个，在 application.yaml 文件中设置 zuul.<SimpleClassName>.<filterType>.disable=true。 
 	+ 按照惯例，Zuul.过滤器.Zuul过滤器类型。例如，要禁用 org.springframework.cloud.netflix.zuul.filters.post.SendResponseFilter ，
 	在application.yaml文件中设置如下：
-	```$xslt
-    zuul.SendResponseFilter.post.disable = true
-    ```
+        ```$xslt
+        zuul.SendResponseFilter.post.disable = true
+        ```
 			
