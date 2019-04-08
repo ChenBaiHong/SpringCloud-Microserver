@@ -1,4 +1,4 @@
-## eureka官方说明：
+## spring-cloud 版本 Finchley.RELEASE官方说明：
 > http://cloud.spring.io/spring-cloud-static/Finchley.RELEASE
 		
 ## 项目学习顺序：

@@ -1,5 +1,5 @@
 
-## eureka官方说明：eureka官方说明：
+## spring-cloud-config 官方说明：
 > https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.0.3.RELEASE/multi/multi_spring-cloud-config.html
 		
 ## 项目学习顺序：
